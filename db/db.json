@@ -1,6 +1,18 @@
 [
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
+  {
+    "title": "Test Title",
+    "text": "Test text"
+  },
+  {
+    "title": "Hello World",
+    "text": "Today we learned a lot in class"
+  },
+  {
+    "title": "In Texas",
+    "text": "There is a heat advisory "
+  },
+  {
+    "title": "Dog Names",
+    "text": "Here is a list of dog names- Magnolia, Molly, and Sassy"
+  }
 ]
