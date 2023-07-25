@@ -22,6 +22,7 @@ app.get('/notes', (req, res) => {
 });
 
 app.get('/api/notes', (req, res) => res.json(db));
+
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received`);
     const saveNote = db;
