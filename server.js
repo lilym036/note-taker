@@ -23,6 +23,7 @@ app.get('/notes', (req, res) => {
 
 app.get('/api/notes', (req, res) => res.json(db));
 app.post('/api/notes', (req, res) => {
+    console.info(`${req.method} request received`);
     const saveNote = db;
     const { title, text } = req.body;
     const newNote = {
@@ -31,7 +32,7 @@ app.post('/api/notes', (req, res) => {
         id: uuid(),
     };
     saveNote.push(newNote);
-    fs.writeFileSync(`./db/db.json`, JSON.stringify(saveNote));
+    fs.writeFileSync(`./db/db.json`, JSON.stringify(saveNote, null, 3));
     res.json(saveNote);
 })
 
@@ -47,41 +48,6 @@ app.delete('/api/notes/:id', (req, res) => {
     res.json(saveNote);
 })
 
-// app.post('/api/notes', (req, res) => {
-//     console.info(`${req.method} request received`);
-
-//     const { title, text } = req.body;
-
-//     if (title && text) {
-//         const newNote = {
-//             title,
-//             text,
-//             id: uuid(),
-//         };
-
-//         const data = fs.readFileSync('./db/db.json')
-//         const parsedData = JSON.parse(data)
-//         parsedData.push(newNote);
-
-//         fs.writeFileSync(`./db/db.json`, JSON.stringify(parsedData, null, 2)
-//         );
-//         const response = {
-//             status: 'success',
-//             body: newNote,
-//         };
-
-//         console.log(response)
-//         res.status(200).json(response);
-        // if (err) {
-        //     console.log(err);
-        // }
-        // return
-        // } else {
-
-
-        // res.status(500).json('Error in posting new note');
-//     }
-// });
 
 
 app.listen(PORT, () =>

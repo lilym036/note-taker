@@ -1,1 +1,21 @@
-[{"title":"test","text":"test check"},{"title":"Hello World","text":"today in Texas","id":"0388"},{"title":"New note number 3","text":"here is another note","id":"c60f"},{"title":"grocery list","text":"carrots, veggies","id":"9771"},{"title":"Added new note","text":"here is a new one","id":"be1c"},{"title":"new note ","text":"here is a new note","id":"2ca2"},{"title":"grocery list2","text":"carrots, wings","id":"d0a2"},{"title":"here is a note","text":"another note","id":"1063"},{"title":"response","text":"this is a new note","id":"1d3b"},{"title":"newNote","text":"new note","id":"e53f"},{"title":"new post","text":"here's a post","id":"25d3"}]
+[
+   {
+      "title": "test",
+      "text": "test check"
+   },
+   {
+      "title": "Hello World",
+      "text": "There is a heat advisory in Texas today.",
+      "id": "f0f8"
+   },
+   {
+      "title": "Test Note 2",
+      "text": "here is another test ",
+      "id": "a44d"
+   },
+   {
+      "title": "Grocery List",
+      "text": "carrots, celery, chicken, noodles",
+      "id": "3377"
+   }
+]
