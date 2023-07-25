@@ -22,44 +22,66 @@ app.get('/notes', (req, res) => {
 });
 
 app.get('/api/notes', (req, res) => res.json(db));
-
 app.post('/api/notes', (req, res) => {
-    console.info(`${req.method} request received`);
-
+    const saveNote = db;
     const { title, text } = req.body;
+    const newNote = {
+        title,
+        text,
+        id: uuid(),
+    };
+    saveNote.push(newNote);
+    fs.writeFileSync(`./db/db.json`, JSON.stringify(saveNote));
+    res.json(saveNote);
+})
 
-    if (title && text) {
-        const newNote = {
-            title,
-            text,
-            note_id: uuid(),
-        };
-
-    fs.readFile('./db/db.json', 'utf-8', (err, data) => {
-        if (err) {
-        console.log(err);
-        return
-        } else {
-            const parsedData = JSON.parse(data)
-            parsedData.push(newNote);
-
-            fs.writeFile(`./db/db.json`, JSON.stringify(parsedData, null, 2), (writeErr) =>
-                writeErr ? console.error(err) : console.log(`New note for ${newNote.title} has been written to JSON file`)
-                );
-            }
-        });
-
-        const response = {
-            status: 'succes',
-            body: newNote,
-        };
-
-        console.log(response)
-        res.status(201).json(response);
-    } else {
-        res.status(500).json('Error in posting new note');
+app.delete('/api/notes/:id', (req, res) => {
+    const saveNote= db;
+    const noteId= req.params.id;
+    for (i=0; i< saveNote.length; i++) {
+        if (saveNote[i].id === noteId) {
+            saveNote.splice(i, 1)
+        }
     }
-});
+    fs.writeFileSync(`./db/db.json`, JSON.stringify(saveNote));
+    res.json(saveNote);
+})
+
+// app.post('/api/notes', (req, res) => {
+//     console.info(`${req.method} request received`);
+
+//     const { title, text } = req.body;
+
+//     if (title && text) {
+//         const newNote = {
+//             title,
+//             text,
+//             id: uuid(),
+//         };
+
+//         const data = fs.readFileSync('./db/db.json')
+//         const parsedData = JSON.parse(data)
+//         parsedData.push(newNote);
+
+//         fs.writeFileSync(`./db/db.json`, JSON.stringify(parsedData, null, 2)
+//         );
+//         const response = {
+//             status: 'success',
+//             body: newNote,
+//         };
+
+//         console.log(response)
+//         res.status(200).json(response);
+        // if (err) {
+        //     console.log(err);
+        // }
+        // return
+        // } else {
+
+
+        // res.status(500).json('Error in posting new note');
+//     }
+// });
 
 
 app.listen(PORT, () =>
