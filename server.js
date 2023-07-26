@@ -21,8 +21,10 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
+// get request for notes
 app.get('/api/notes', (req, res) => res.json(db));
 
+// post request for notes 
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received`);
     const saveNote = db;
@@ -37,6 +39,7 @@ app.post('/api/notes', (req, res) => {
     res.json(saveNote);
 })
 
+// delete request for notes 
 app.delete('/api/notes/:id', (req, res) => {
     const saveNote= db;
     const noteId= req.params.id;
@@ -50,7 +53,7 @@ app.delete('/api/notes/:id', (req, res) => {
 })
 
 
-
+// initiaes the server
 app.listen(PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
 );
